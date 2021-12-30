@@ -6,17 +6,45 @@ import (
 	"strconv"
 )
 
+/*
+The User Defined Type token.
+	- tokType: The type of the token.
+	- tokVal: The value of the token.
+
+
+POSSIBLE VALUES:
+	- + ARITHMETIC		|	- ARITHMETIC
+	- * ARITHMETIC		| 	/ ARITHMETIC
+	- = ASSIGNMENT		|	== COMPARISON
+	- < COMPARISON		|	<= COMPARISON
+	- > COMPARISON		|	>= COMPARISON
+	- || COMPARISON		|	&& COMPARISON
+	- != COMPARISON
+
+	- char CHAR			| 	for LOOP
+	- if CONDITION		|	left DIRECTION
+	- move ACTION		|	memory MEMORY
+	- new SPECIAL		| 	print PRINT
+	- pointer POINTER	| 	right DIRECTION
+	- tab SPECIAL		|	 0-9 NUMBER
+*/
 type token struct {
-	tokType string
-	tokVal  string
+	tokType string // The type of the token or CATEGORY
+	tokVal  string // The value of the token or VALUE
 }
 
-// a function named lex which takes in a string
-// and returns a slice of strings.
-// The lex can identify the following tokens:
-// char, for, if, left, memory, move, new, pointer, print, right, tab
-// and the following operators: +, -, *, /, =, <, >, <=, >=, ==, !=, &&, ||
-// and integers
+/* 
+A function which takes in a string
+	- and returns a slice of strings.
+	- The lex can identify the following tokens:
+	- char, for, if, left, memory, move, new, pointer, print, right, tab
+	- and the following operators: +, -, *, /, =, <, >, <=, >=, ==, !=, &&, ||
+	- and integers
+
+Parameters:
+	- line: The line of code to be tokenized.
+	- lineNumber: The line number of the line of code.
+*/
 func lex(line string, lineNumber int) []token {
 
 	var tokens []token
@@ -188,6 +216,16 @@ func lex(line string, lineNumber int) []token {
 	return tokens
 }
 
+/*
+The function which prints the error to the console.
+	- line: The line which contains the error.
+	- lineNumber: The line number of the error.
+	- i: The index of the error at the given line
+
+	Returns: Nothing
+
+	Prints: The error to the console.
+*/
 func printError(line string, lineNumber int, i int) {
 	fmt.Println()
 	fmt.Println("(*_*) Tokenization Error:")
