@@ -40,38 +40,38 @@ func lex(line string, lineNumber int) []token {
 			tokens = append(tokens, token{"ARITHMETIC", "/"}) // /
 		} else if line[i] == '=' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"EQUALS", "=="}) // ==
+				tokens = append(tokens, token{"COMPARISON", "=="}) // ==
 				i++
 			} else {
 				tokens = append(tokens, token{"ASSIGNMENT", "="}) // =
 			}
 		} else if line[i] == '<' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"LESSOREQUAL", "<="}) // <=
+				tokens = append(tokens, token{"COMPARISON", "<="}) // <=
 				i++
 			} else {
-				tokens = append(tokens, token{"LESS", "<"}) // <
+				tokens = append(tokens, token{"COMPARISON", "<"}) // <
 			}
 		} else if line[i] == '>' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"GREATOREQUAL", ">="}) // >=
+				tokens = append(tokens, token{"COMPARISON", ">="}) // >=
 				i++
 			} else {
-				tokens = append(tokens, token{"GREAT", ">"}) // >
+				tokens = append(tokens, token{"COMPARISON", ">"}) // >
 			}
 		} else if line[i] == '!' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"NOTEQUAL", "!="}) // !=
+				tokens = append(tokens, token{"COMPARISON", "!="}) // !=
 				i++
 			}
 		} else if line[i] == '|' {
 			if line[i+1] == '|' {
-				tokens = append(tokens, token{"OR", "||"}) // ||
+				tokens = append(tokens, token{"COMPARISON", "||"}) // ||
 				i++
 			}
 		} else if line[i] == '&' {
 			if line[i+1] == '&' {
-				tokens = append(tokens, token{"AND", "&&"}) // &&
+				tokens = append(tokens, token{"COMPARISON", "&&"}) // &&
 				i++
 			}
 		} else if line[i] == 'c' {
