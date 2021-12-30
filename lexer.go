@@ -228,13 +228,13 @@ The function which prints the error to the console.
 */
 func printError(line string, lineNumber int, i int) {
 	fmt.Println()
-	fmt.Println("(*_*) Tokenization Error:")
+	fmt.Println("💀 Tokenization Error:")
 	fmt.Println(`Unknown token: "` + string(line[i]) + `"` + " at line " + strconv.Itoa(lineNumber))
 	fmt.Println(line)
 	for j := 0; j < i; j++ {
 		fmt.Print(" ")
 	}
-	fmt.Print("^")
+	fmt.Print("👆")
 	fmt.Println()
 	os.Exit(1)
 }
