@@ -31,54 +31,54 @@ func lex(line string, lineNumber int) []token {
 			}
 			continue
 		} else if line[i] == '+' {
-			tokens = append(tokens, token{"SYMBOL", "+"}) // +
+			tokens = append(tokens, token{"ARITHMETIC", "+"}) // +
 		} else if line[i] == '-' {
-			tokens = append(tokens, token{"SYMBOL", "-"}) // -
+			tokens = append(tokens, token{"ARITHMETIC", "-"}) // -
 		} else if line[i] == '*' {
-			tokens = append(tokens, token{"SYMBOL", "*"}) // *
+			tokens = append(tokens, token{"ARITHMETIC", "*"}) // *
 		} else if line[i] == '/' {
-			tokens = append(tokens, token{"SYMBOL", "/"}) // /
+			tokens = append(tokens, token{"ARITHMETIC", "/"}) // /
 		} else if line[i] == '=' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"SYMBOL", "=="}) // ==
+				tokens = append(tokens, token{"EQUALS", "=="}) // ==
 				i++
 			} else {
-				tokens = append(tokens, token{"SYMBOL", "="}) // =
+				tokens = append(tokens, token{"ASSIGNMENT", "="}) // =
 			}
 		} else if line[i] == '<' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"SYMBOL", "<="}) // <=
+				tokens = append(tokens, token{"LESSOREQUAL", "<="}) // <=
 				i++
 			} else {
-				tokens = append(tokens, token{"SYMBOL", "<"}) // <
+				tokens = append(tokens, token{"LESS", "<"}) // <
 			}
 		} else if line[i] == '>' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"SYMBOL", ">="}) // >=
+				tokens = append(tokens, token{"GREATOREQUAL", ">="}) // >=
 				i++
 			} else {
-				tokens = append(tokens, token{"SYMBOL", ">"}) // >
+				tokens = append(tokens, token{"GREAT", ">"}) // >
 			}
 		} else if line[i] == '!' {
 			if line[i+1] == '=' {
-				tokens = append(tokens, token{"SYMBOL", "!="}) // !=
+				tokens = append(tokens, token{"NOTEQUAL", "!="}) // !=
 				i++
 			}
 		} else if line[i] == '|' {
 			if line[i+1] == '|' {
-				tokens = append(tokens, token{"SYMBOL", "||"}) // ||
+				tokens = append(tokens, token{"OR", "||"}) // ||
 				i++
 			}
 		} else if line[i] == '&' {
 			if line[i+1] == '&' {
-				tokens = append(tokens, token{"SYMBOL", "&&"}) // &&
+				tokens = append(tokens, token{"AND", "&&"}) // &&
 				i++
 			}
 		} else if line[i] == 'c' {
 			if line[i+1] == 'h' {
 				if line[i+2] == 'a' {
 					if line[i+3] == 'r' {
-						tokens = append(tokens, token{"WORD", "char"}) // char
+						tokens = append(tokens, token{"CHAR", "char"}) // char
 						i = i + 3
 					}
 				}
@@ -86,14 +86,14 @@ func lex(line string, lineNumber int) []token {
 		} else if line[i] == 'f' {
 			if line[i+1] == 'o' {
 				if line[i+2] == 'r' {
-					tokens = append(tokens, token{"WORD", "for"}) // for
+					tokens = append(tokens, token{"LOOP", "for"}) // for
 					i = i + 2
 				}
 			} else if line[i+1] == 'a' {
 				if line[i+2] == 'l' {
 					if line[i+3] == 's' {
 						if line[i+4] == 'e' {
-							tokens = append(tokens, token{"WORD", "false"}) // false
+							tokens = append(tokens, token{"BOOLEAN", "false"}) // false
 							i = i + 4
 						}
 					}
@@ -101,14 +101,14 @@ func lex(line string, lineNumber int) []token {
 			}
 		} else if line[i] == 'i' {
 			if line[i+1] == 'f' {
-				tokens = append(tokens, token{"WORD", "if"}) // if
+				tokens = append(tokens, token{"CONDITION", "if"}) // if
 				i = i + 1
 			}
 		} else if line[i] == 'l' {
 			if line[i+1] == 'e' {
 				if line[i+2] == 'f' {
 					if line[i+3] == 't' {
-						tokens = append(tokens, token{"WORD", "left"}) // left
+						tokens = append(tokens, token{"DIRECTION", "left"}) // left
 						i = i + 3
 					}
 				}
@@ -117,7 +117,7 @@ func lex(line string, lineNumber int) []token {
 			if line[i+1] == 'o' {
 				if line[i+2] == 'v' {
 					if line[i+3] == 'e' {
-						tokens = append(tokens, token{"WORD", "move"}) // move
+						tokens = append(tokens, token{"ACTION", "move"}) // move
 						i = i + 3
 					}
 				}
@@ -126,7 +126,7 @@ func lex(line string, lineNumber int) []token {
 					if line[i+3] == 'o' {
 						if line[i+4] == 'r' {
 							if line[i+5] == 'y' {
-								tokens = append(tokens, token{"WORD", "memory"}) // memory
+								tokens = append(tokens, token{"MEMORY", "memory"}) // memory
 								i = i + 5
 							}
 						}
@@ -136,7 +136,7 @@ func lex(line string, lineNumber int) []token {
 		} else if line[i] == 'n' {
 			if line[i+1] == 'e' {
 				if line[i+2] == 'w' {
-					tokens = append(tokens, token{"WORD", "new"}) // new
+					tokens = append(tokens, token{"SPECIAL", "new"}) // new
 					i = i + 2
 				}
 			}
@@ -145,7 +145,7 @@ func lex(line string, lineNumber int) []token {
 				if line[i+2] == 'i' {
 					if line[i+3] == 'n' {
 						if line[i+4] == 't' {
-							tokens = append(tokens, token{"WORD", "print"}) // print
+							tokens = append(tokens, token{"PRINT", "print"}) // print
 							i = i + 4
 						}
 					}
@@ -156,7 +156,7 @@ func lex(line string, lineNumber int) []token {
 						if line[i+4] == 't' {
 							if line[i+5] == 'e' {
 								if line[i+6] == 'r' {
-									tokens = append(tokens, token{"WORD", "pointer"}) // pointer
+									tokens = append(tokens, token{"POINTER", "pointer"}) // pointer
 									i = i + 6
 								}
 							}
@@ -169,7 +169,7 @@ func lex(line string, lineNumber int) []token {
 				if line[i+2] == 'g' {
 					if line[i+3] == 'h' {
 						if line[i+4] == 't' {
-							tokens = append(tokens, token{"WORD", "right"}) // right
+							tokens = append(tokens, token{"DIRECTION", "right"}) // right
 							i = i + 4
 						}
 					}
@@ -178,12 +178,12 @@ func lex(line string, lineNumber int) []token {
 		} else if line[i] == 't' {
 			if line[i+1] == 'a' {
 				if line[i+2] == 'b' {
-					tokens = append(tokens, token{"WORD", "tab"}) // tab
+					tokens = append(tokens, token{"SPECIAL", "tab"}) // tab
 				}
 			} else if line[i+1] == 'r' {
 				if line[i+2] == 'u' {
 					if line[i+3] == 'e' {
-						tokens = append(tokens, token{"WORD", "true"}) // true
+						tokens = append(tokens, token{"BOOLEAN", "true"}) // true
 						i = i + 3
 					}
 				}
