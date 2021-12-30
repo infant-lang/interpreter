@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
@@ -26,8 +25,8 @@ func main () {
  
 	readFile.Close()
  
-	for _, eachline := range fileTextLines {
-		fmt.Println(eachline)
+	for lineNumber, eachline := range fileTextLines {
+		parse(eachline, lineNumber + 1)
 	}
 
 
