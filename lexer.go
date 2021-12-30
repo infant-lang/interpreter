@@ -29,8 +29,8 @@ POSSIBLE VALUES:
 	- tab SPECIAL		|	 0-9 NUMBER
 */
 type token struct {
-	tokType string // The type of the token or CATEGORY
-	tokVal  string // The value of the token or VALUE
+	tokenType string // The type of the token or CATEGORY
+	tokenValue  string // The value of the token or VALUE
 }
 
 /* 
