@@ -1,3 +1,3 @@
-module github.com/tharunoptimus/infantlang
+module github.com/tharunoptimus/infant
 
 go 1.17
