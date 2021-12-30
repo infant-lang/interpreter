@@ -14,7 +14,7 @@ type token struct {
 // a function named lex which takes in a string
 // and returns a slice of strings.
 // The lex can identify the following tokens:
-// char, false, for, if, left, memory, move, new, pointer, print, right, tab, true
+// char, for, if, left, memory, move, new, pointer, print, right, tab
 // and the following operators: +, -, *, /, =, <, >, <=, >=, ==, !=, &&, ||
 // and integers
 func lex(line string, lineNumber int) []token {
@@ -88,15 +88,6 @@ func lex(line string, lineNumber int) []token {
 				if line[i+2] == 'r' {
 					tokens = append(tokens, token{"LOOP", "for"}) // for
 					i = i + 2
-				}
-			} else if line[i+1] == 'a' {
-				if line[i+2] == 'l' {
-					if line[i+3] == 's' {
-						if line[i+4] == 'e' {
-							tokens = append(tokens, token{"BOOLEAN", "false"}) // false
-							i = i + 4
-						}
-					}
 				}
 			}
 		} else if line[i] == 'i' {
@@ -179,13 +170,6 @@ func lex(line string, lineNumber int) []token {
 			if line[i+1] == 'a' {
 				if line[i+2] == 'b' {
 					tokens = append(tokens, token{"SPECIAL", "tab"}) // tab
-				}
-			} else if line[i+1] == 'r' {
-				if line[i+2] == 'u' {
-					if line[i+3] == 'e' {
-						tokens = append(tokens, token{"BOOLEAN", "true"}) // true
-						i = i + 3
-					}
 				}
 			}
 		} else if line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == '3' ||
