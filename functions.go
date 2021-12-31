@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"strconv"
+)
+
 /*
 A function to check if the following grammars are valid
 	- Grammar 1: MEMORY ASSIGNMENT MEMORY ARITHMETIC MEMORY
