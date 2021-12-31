@@ -93,3 +93,20 @@ func runtimeError(line string, lineNumber int, errorMessage string) {
 	fmt.Println()
 	os.Exit(1)
 }
+
+/*
+A Function which prints the file access error when executing the program.
+
+It exits the program with a code of 1.
+
+Parameters: 
+	- errorMessage: The error message which should be printed.
+	- err: The error which was thrown.
+*/
+func printFileAccessError(errorMessage string, err string) {
+	fmt.Println()
+	fmt.Println(errorMessage)
+	fmt.Println("Error:", err)
+	fmt.Println()
+	os.Exit(1)
+}
