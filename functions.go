@@ -1,9 +1,43 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
 )
+
+/*
+A function that reads the file and returns a slice of strings
+
+Parameters:
+	- args: The Number of Command Line Argument to be read.
+
+Returns:
+	- fileTextLines: A slice of strings.
+*/
+func readFile(args int) ([]string) {
+	
+	FILE_NAME := os.Args[1]
+	readFile, err := os.Open(FILE_NAME)
+
+	if err != nil {
+		errorMessage := "💀 Unable to Access File: " + FILE_NAME
+		printFileAccessError(errorMessage, err.Error())
+	}
+
+	fileScanner := bufio.NewScanner(readFile)
+	fileScanner.Split(bufio.ScanLines)
+	var fileTextLines []string
+ 
+	for fileScanner.Scan() {
+		fileTextLines = append(fileTextLines, fileScanner.Text())
+	}
+
+	readFile.Close()
+
+	return fileTextLines
+}
 
 /*
 A function to check if the following grammars are valid
