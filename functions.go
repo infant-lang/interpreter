@@ -19,6 +19,12 @@ Returns:
 func readFile(args int) ([]string) {
 	
 	FILE_NAME := os.Args[1]
+
+	if FILE_NAME == "-v" || FILE_NAME == "--version" {
+		fmt.Println("v1.0.1")
+		os.Exit(0)
+	}
+
 	readFile, err := os.Open(FILE_NAME)
 
 	if err != nil {
