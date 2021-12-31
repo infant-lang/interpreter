@@ -152,8 +152,8 @@ The Executable is available only for amd64 Windows Systems.
 - Download the zip file from the Releases page.
 - Unzip the file 
 - Open Run and Type `%USERPROFILE%` and press `OK`
-- Create a folder `bin/infant` if not already created.
-- Extract the executable to the `bin/infant` folder.
+- Create a folder `bin` if not already created.
+- Extract the executable to the `bin` folder.
 - Open Command Prompt and type the following command:
     - `setx INFANT_HOME "%USERPROFILE%\bin\infant\"`
     - `setx PATH "%INFANT_HOME%;%PATH%"`
