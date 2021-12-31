@@ -17,6 +17,10 @@ Returns:
 	- fileTextLines: A slice of strings.
 */
 func readFile(args int) ([]string) {
+
+	if len(os.Args) == 1 {
+		noArguments()
+	}
 	
 	FILE_NAME := os.Args[1]
 
