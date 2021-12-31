@@ -165,37 +165,58 @@ func checkAction(tokens []token, line string, lineNumber int) []token {
 /*
 A function to check if the following grammars are valid
 	- Grammar 1: CONDITION MEMORY COMPARISON POINTER
-	- Grammar 2: CONDITION POINTER COMPARISON MEMORY
+	- Grammar 2: CONDITION MEMORY COMPARISON MEMORY
 	- Grammar 3: CONDITION MEMORY COMPARISON NUMBER
-	- Grammar 4: CONDITION POINTER COMPARISON NUMBER
+	- Grammar 4: CONDITION POINTER COMPARISON POINTER
+	- Grammar 5: CONDITION POINTER COMPARISON MEMORY
+	- Grammar 6: CONDITION POINTER COMPARISON NUMBER
+	- Grammar 7: CONDITION NUMBER COMPARISON POINTER
+	- Grammar 8: CONDITION NUMBER COMPARISON MEMORY
+	- Grammar 9: CONDITION NUMBER COMPARISON NUMBER
 */
 func checkCondition(tokens []token, line string, lineNumber int) []token {
 
+
 	if tokens[0].tokenType == "CONDITION" {
-		if tokens[2].tokenType == "COMPARISON" {
-			if tokens[1].tokenType == "MEMORY" {
+		if tokens[1].tokenType == "MEMORY" {
+			if tokens[2].tokenType == "COMPARISON" {
 				if tokens[3].tokenType == "POINTER" {
 					return tokens[:4]
-				} else if tokens[3].tokenType == "NUMBER" {
-					return tokens[:4]
-				}
-				printParseError(line, lineNumber, tokens[4].tokenType)
-
-			} else if tokens[1].tokenType == "POINTER" {
-
-				if tokens[3].tokenType == "MEMORY" {
+				} else if tokens[3].tokenType == "MEMORY" {
 					return tokens[:4]
 				} else if tokens[3].tokenType == "NUMBER" {
 					return tokens[:4]
 				}
-				printParseError(line, lineNumber, tokens[4].tokenType)
+				printParseError(line, lineNumber, tokens[3].tokenValue)
 			}
-			printParseError(line, lineNumber, tokens[3].tokenType)
+			printParseError(line, lineNumber, tokens[2].tokenValue)
+		} else if tokens[1].tokenType == "POINTER" {
+			if tokens[2].tokenType == "COMPARISON" {
+				if tokens[3].tokenType == "POINTER" {
+					return tokens[:4]
+				} else if tokens[3].tokenType == "MEMORY" {
+					return tokens[:4]
+				} else if tokens[3].tokenType == "NUMBER" {
+					return tokens[:4]
+				}
+				printParseError(line, lineNumber, tokens[3].tokenValue)
+			}
+			printParseError(line, lineNumber, tokens[2].tokenValue)
+		} else if tokens[1].tokenType == "NUMBER" {
+			if tokens[2].tokenType == "COMPARISON" {
+				if tokens[3].tokenType == "POINTER" {
+					return tokens[:4]
+				} else if tokens[3].tokenType == "MEMORY" {
+					return tokens[:4]
+				} else if tokens[3].tokenType == "NUMBER" {
+					return tokens[:4]
+				}
+				printParseError(line, lineNumber, tokens[3].tokenValue)
+			}
+			printParseError(line, lineNumber, tokens[2].tokenValue)
 		}
-		printParseError(line, lineNumber, tokens[2].tokenValue)
+		printParseError(line, lineNumber, tokens[1].tokenValue)
 	}
-
-	printParseError(line, lineNumber, tokens[1].tokenValue)
 	return nil
 }
 

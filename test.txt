@@ -1,1 +1,1 @@
-if pointer == memory move pointer right 1
+if 12 == 23 print char
