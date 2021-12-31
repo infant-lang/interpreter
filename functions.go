@@ -355,6 +355,8 @@ func printStuff(printTokens []token, p int, m int) (int, int) {
 			fmt.Println()
 		} else if printTokens[1].tokenValue == "tab" {
 			fmt.Print("\t")
+		} else if printTokens[1].tokenValue == "space" {
+			fmt.Print(" ")
 		}
 	}
 
