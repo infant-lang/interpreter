@@ -1,11 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"strconv"
-)
-
 /*
 The User Defined Type token.
 	- tokType: The type of the token.
@@ -214,27 +208,4 @@ func lex(line string, lineNumber int) []token {
 	}
 
 	return tokens
-}
-
-/*
-The function which prints the error to the console.
-	- line: The line which contains the error.
-	- lineNumber: The line number of the error.
-	- i: The index of the error at the given line
-
-	Returns: Nothing
-
-	Prints: The error to the console.
-*/
-func printError(line string, lineNumber int, i int) {
-	fmt.Println()
-	fmt.Println("💀 Tokenization Error:")
-	fmt.Println(`Unknown token: "` + string(line[i]) + `"` + " at line " + strconv.Itoa(lineNumber))
-	fmt.Println(line)
-	for j := 0; j < i; j++ {
-		fmt.Print(" ")
-	}
-	fmt.Print("👆")
-	fmt.Println()
-	os.Exit(1)
 }
