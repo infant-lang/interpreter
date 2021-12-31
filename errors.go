@@ -72,3 +72,24 @@ func printError(line string, lineNumber int, i int) {
 	fmt.Println()
 	os.Exit(1)
 }
+
+/*
+A function which prints the runtime error when executing the program.
+
+Parameters:
+	- line: The line which contains the error.
+	- lineNumber: The line number of the error.
+	- errorMessage: The error which was thrown.
+
+Returns: Nothing
+
+Prints: The error to the console.
+*/
+func runtimeError(line string, lineNumber int, errorMessage string) {
+	fmt.Println()
+	fmt.Println("💀 Runtime Error:")
+	fmt.Println(errorMessage + " at line " + strconv.Itoa(lineNumber))
+	fmt.Println("👉 " + line)
+	fmt.Println()
+	os.Exit(1)
+}
