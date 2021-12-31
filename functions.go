@@ -402,6 +402,80 @@ func assignMemory(assignmentTokens []token, p int) (int, int) {
 }
 
 /*
+A function that will do a conditional check on the program during runtime
+	If it decides to skip the execution, the program will skip the line
+	It if decides to execute it, it will recursively try to find and execute the statements
+
+Parameters:
+	- conditionalTokens: []tokens containing the tokens to be used for the conditional check
+	- tokens: []tokens containing the tokens of the line that is being executed
+	- line: string - the line that is being executed
+	- lineNumber: int - the line number of the line that is being executed
+	- p: int - the current pointer value
+	- m: int - the current memory value
+
+Return Values:
+	- p: int - the new pointer value
+	- m: int - the new memory value
+
+Note: This function will recursively call the parse function which calls this function to parse the statements
+*/
+func doConditionalCheck(tokens []token, conditionTokens []token, line string, lineNumber int, p int, m int) (int, int) {
+	var shouldWeDo bool = false
+	var firstOperand int = 0
+	var secondOperand int = 0
+
+	if conditionTokens[1].tokenType == "NUMBER" {
+		firstOperand, _ = strconv.Atoi(conditionTokens[1].tokenValue)
+	} else if conditionTokens[1].tokenType == "MEMORY" {
+		firstOperand = m
+	} else if conditionTokens[1].tokenType == "POINTER" {
+		firstOperand = p
+	}
+
+	if conditionTokens[3].tokenType == "NUMBER" {
+		secondOperand, _ = strconv.Atoi(conditionTokens[1].tokenValue)
+	} else if conditionTokens[3].tokenType == "MEMORY" {
+		secondOperand = m
+	} else if conditionTokens[3].tokenType == "POINTER" {
+		secondOperand = p
+	}
+
+	if conditionTokens[2].tokenValue == ">" {
+		if firstOperand > secondOperand {
+			shouldWeDo = true
+		}
+	} else if conditionTokens[2].tokenValue == "<" {
+		if firstOperand < secondOperand {
+			shouldWeDo = true
+		}
+	} else if conditionTokens[2].tokenValue == "==" {
+		if firstOperand == secondOperand {
+			shouldWeDo = true
+		}
+	} else if conditionTokens[2].tokenValue == "!=" {
+		if firstOperand != secondOperand {
+			shouldWeDo = true
+		}
+	} else if conditionTokens[2].tokenValue == ">=" {
+		if firstOperand >= secondOperand {
+			shouldWeDo = true
+		}
+	} else if conditionTokens[2].tokenValue == "<=" {
+		if firstOperand <= secondOperand {
+			shouldWeDo = true
+		}
+	}
+
+	if shouldWeDo {
+		unTouchedTokens := tokens[4:]
+		p, m = parser(unTouchedTokens, line, lineNumber, p, m)
+	}
+
+	return p, m
+}
+
+/*
 A function which returns the ASCII Character of the given number.
 
 Parameters:
