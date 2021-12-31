@@ -302,6 +302,52 @@ func printStuff(printTokens []token, p int, m int) (int, int) {
 
 	return p, m
 }
+
+func doArithmetic(arithmeticTokens []token, line string, lineNumber int, p int, m int) (int, int) {
+	var firstOperand int
+	var secondOperand int
+
+	if arithmeticTokens[2].tokenType == "MEMORY" {
+		firstOperand = m
+	} else if arithmeticTokens[2].tokenType == "POINTER" {
+		firstOperand = p
+	} else if arithmeticTokens[2].tokenType == "NUMBER" {
+		firstOperand, _ = strconv.Atoi(arithmeticTokens[2].tokenValue)
+	}
+
+	if arithmeticTokens[4].tokenType == "MEMORY" {
+		secondOperand = m
+	} else if arithmeticTokens[4].tokenType == "POINTER" {
+		secondOperand = p
+	} else if arithmeticTokens[4].tokenType == "NUMBER" {
+		secondOperand, _ = strconv.Atoi(arithmeticTokens[4].tokenValue)
+	}
+	
+	if arithmeticTokens[3].tokenValue == "+" {
+		m = firstOperand + secondOperand
+	} else if arithmeticTokens[3].tokenValue == "-" {
+		if firstOperand - secondOperand < 0 {
+			runtimeError(line, lineNumber, "Negative number. Memory Cannot Hold Negative Numbers")
+		} else {
+			m = firstOperand - secondOperand
+		}
+	} else if arithmeticTokens[3].tokenValue == "*" {
+		m = firstOperand * secondOperand
+	} else if arithmeticTokens[3].tokenValue == "/" {
+		if secondOperand == 0 {
+			runtimeError(line, lineNumber, "Cannot Divide Entity by Zero")
+		} else {
+			testValue := float32(firstOperand) / float32(secondOperand)
+			if isIntegral(testValue) {
+				m = int(testValue)
+			} else {
+				runtimeError(line, lineNumber, "Memory Cannot Have Decimal Values")
+			}
+		}
+	}
+
+	return p, m
+}
 /*
 A function which returns the ASCII Character of the given number.
 
