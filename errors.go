@@ -13,6 +13,10 @@ Parameters:
 	- line: the line of code which caused the error
 	- lineNumber: the line of the code which contains the error
 	- token: the token which caused the error
+
+Returns: Nothing
+
+Prints: The error to the console.
 */
 func printParseError(line string, lineNumber int, token string) {
 	fmt.Println()
@@ -25,9 +29,15 @@ func printParseError(line string, lineNumber int, token string) {
 
 /*
 Function which prints the 'Expected Token' error message
+
+Parameters: 
 	- line: the line of code which caused the error
 	- lineNumber: the line of the code which contains the error
 	- token: the expectedToken
+
+Returns: Nothing
+
+Prints: The error to the console.
 */
 func printExpectedTokenError(line string, lineNumber int, expectedToken string) {
 	fmt.Println()
@@ -40,6 +50,8 @@ func printExpectedTokenError(line string, lineNumber int, expectedToken string) 
 
 /*
 The function which prints the error to the console.
+
+Parameters:
 	- line: The line which contains the error.
 	- lineNumber: The line number of the error.
 	- i: The index of the error at the given line
