@@ -153,7 +153,7 @@ func checkAction(tokens []token, line string, lineNumber int) []token {
 			}
 
 			return tokens[:3]
-			
+
 		}
 
 		printParseError(line, lineNumber, tokens[2].tokenValue)
@@ -175,7 +175,6 @@ A function to check if the following grammars are valid
 	- Grammar 9: CONDITION NUMBER COMPARISON NUMBER
 */
 func checkCondition(tokens []token, line string, lineNumber int) []token {
-
 
 	if tokens[0].tokenType == "CONDITION" {
 		if tokens[1].tokenType == "MEMORY" {
@@ -241,7 +240,6 @@ func checkLoop(tokens []token, line string, lineNumber int) []token {
 	return nil
 }
 
-
 /*
 A function to move the pointer in the specified direction by the specified number of steps which defaults to 1
 
@@ -258,7 +256,7 @@ Return value:
 */
 func pointerMovements(actionTokens []token, line string, lineNumber int, p int, m int) (int, int) {
 	numberOfTokens := len(actionTokens)
-	if (numberOfTokens == 4) {
+	if numberOfTokens == 4 {
 		points := actionTokens[3].tokenValue
 		pointsToMove, _ := strconv.Atoi(points)
 
@@ -267,18 +265,18 @@ func pointerMovements(actionTokens []token, line string, lineNumber int, p int, 
 		} else if actionTokens[2].tokenValue == "left" {
 
 			// DO NOT ALLOW P TO BE NEGATIVE
-			if p - pointsToMove < 0 {
+			if p-pointsToMove < 0 {
 				runtimeError(line, lineNumber, "Pointer can't point to a negative box")
 			} else {
 				p = p - pointsToMove
 			}
 		}
-	} else if (numberOfTokens == 3) {
+	} else if numberOfTokens == 3 {
 		if actionTokens[2].tokenValue == "right" {
 			p = p + 1
 		} else if actionTokens[2].tokenValue == "left" {
 			// DO NOT ALLOW P TO BE NEGATIVE
-			if p - 1 < 0 {
+			if p-1 < 0 {
 				runtimeError(line, lineNumber, "Pointer can't point to a negative box")
 			} else {
 				p = p - 1
@@ -292,12 +290,12 @@ func pointerMovements(actionTokens []token, line string, lineNumber int, p int, 
 /*
 Function which takes care of all the printing stuff from the program execution
 
-Parameters: 
+Parameters:
 	- printTokens: []tokens containing the tokens to be printed
 	- p: int - the current pointer value
 	- m: int - the current memory value
 
-Return Values: 
+Return Values:
 	- p: int - the new pointer value
 	- m: int - the new memory value
 */
@@ -348,11 +346,11 @@ func doArithmetic(arithmeticTokens []token, line string, lineNumber int, p int, 
 	} else if arithmeticTokens[4].tokenType == "NUMBER" {
 		secondOperand, _ = strconv.Atoi(arithmeticTokens[4].tokenValue)
 	}
-	
+
 	if arithmeticTokens[3].tokenValue == "+" {
 		m = firstOperand + secondOperand
 	} else if arithmeticTokens[3].tokenValue == "-" {
-		if firstOperand - secondOperand < 0 {
+		if firstOperand-secondOperand < 0 {
 			runtimeError(line, lineNumber, "Negative number. Memory Cannot Hold Negative Numbers")
 		} else {
 			m = firstOperand - secondOperand
@@ -375,11 +373,10 @@ func doArithmetic(arithmeticTokens []token, line string, lineNumber int, p int, 
 	return p, m
 }
 
-
 /*
 A Function which takes care of the assignment of the memory value at run time
 
-Parameters: 
+Parameters:
 	- assignmentTokens: []tokens containing the tokens to be used for the assignment
 	- p: int - the current pointer value
 	- m: int - the current memory value
@@ -481,7 +478,7 @@ A function which returns the ASCII Character of the given number.
 Parameters:
 	- number(int): The number which is to be converted to ASCII Character.
 
-Returns: 
+Returns:
 	- string: The ASCII Character of the given number.
 */
 func returnASCII(num int) string {
@@ -491,12 +488,12 @@ func returnASCII(num int) string {
 /*
 Function which returns a boolean if the passed floating number is actually an integer
 
-Parameters: 
+Parameters:
 	- number(float64): The number to be checked
 
 Return Value:
 	- bool: True if the number is an integer, false otherwise
 */
 func isIntegral(val float32) bool {
-    return val == float32(int(val))
+	return val == float32(int(val))
 }
