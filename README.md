@@ -1,4 +1,4 @@
-# Interpreter for the Infant Lang
+# Infant Lang Interpreter
 
 
 # Infant Lang
