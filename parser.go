@@ -43,7 +43,7 @@ func parse(line string, lineNumber int, p int, m int) (int, int) {
 	} else if tokens[0].tokenType == "LOOP" {
 		loopTokens := checkLoop(tokens, line, lineNumber)
 		if loopTokens != nil {
-			fmt.Println("Loop:")
+			p, m = doLoops(tokens, loopTokens, line, lineNumber, p, m)
 		}
 
 	} else {
