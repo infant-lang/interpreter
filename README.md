@@ -146,6 +146,21 @@ The easiest ‘for’ implementation that doesn’t allow a negative number. Mov
 7. The Lexer sends the token to the Parser.
 8. Parser parses the tokens and executes the code.
 
+## Installation 📦🔽
+The Executable is available only for amd64 Windows Systems.
+
+- Download the zip file from the Releases page.
+- Unzip the file 
+- Open Run and Type `%USERPROFILE%` and press `OK`
+- Create a folder `bin/infant` if not already created.
+- Extract the executable to the `bin/infant` folder.
+- Open Command Prompt and type the following command:
+    - `setx INFANT_HOME "%USERPROFILE%\bin\infant\"`
+    - `setx PATH "%INFANT_HOME%;%PATH%"`
+- Close the Command Prompt.
+- Open a new Command Prompt and type `infant -v` or `infant --version` to check if the installation was successful.
+- Now pass any file ending with `.infant` to the executable.
+- Eg: In the Command Prompt type `infant hello.infant`
 
 ## For Future Use 
 - Start a Go Project `go mod init github.com/USERNAME/project`
