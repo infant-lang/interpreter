@@ -92,6 +92,7 @@ A function to check if the following grammars are valid
 	- Grammar 4: PRINT CHAR MEMORY
 	- Grammar 5: PRINT NUMBER
 	- Grammar 6: PRINT CHAR NUMBER
+	- Grammar 7: PRINT SPECIAL
 */
 func checkPrint(tokens []token, line string, lineNumber int) []token {
 
@@ -115,6 +116,10 @@ func checkPrint(tokens []token, line string, lineNumber int) []token {
 		}
 
 		if tokens[1].tokenType == "NUMBER" {
+			return tokens[:2]
+		}
+
+		if tokens[1].tokenType == "SPECIAL" {
 			return tokens[:2]
 		}
 		printParseError(line, lineNumber, tokens[1].tokenValue)
