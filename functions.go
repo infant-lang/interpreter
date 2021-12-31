@@ -214,3 +214,16 @@ func checkLoop(tokens []token, line string, lineNumber int) []token {
 	printParseError(line, lineNumber, tokens[1].tokenValue)
 	return nil
 }
+
+/*
+A function which returns the ASCII Character of the given number.
+
+Parameters:
+	- number(int): The number which is to be converted to ASCII Character.
+
+Returns: 
+	- string: The ASCII Character of the given number.
+*/
+func returnASCII(num int) string {
+	return string(rune(num))
+}
