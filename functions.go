@@ -262,6 +262,46 @@ func pointerMovements(actionTokens []token, line string, lineNumber int, p int, 
 
 	return p, m
 }
+
+/*
+Function which takes care of all the printing stuff from the program execution
+
+Parameters: 
+	- printTokens: []tokens containing the tokens to be printed
+	- p: int - the current pointer value
+	- m: int - the current memory value
+
+Return Values: 
+	- p: int - the new pointer value
+	- m: int - the new memory value
+*/
+func printStuff(printTokens []token, p int, m int) (int, int) {
+	if printTokens[1].tokenType == "MEMORY" {
+		fmt.Print(m)
+	} else if printTokens[1].tokenType == "POINTER" {
+		fmt.Print(p)
+	} else if printTokens[1].tokenType == "NUMBER" {
+		fmt.Print(printTokens[1].tokenValue)
+	} else if printTokens[1].tokenType == "CHAR" {
+		if printTokens[2].tokenType == "POINTER" {
+			fmt.Print(returnASCII(p))
+		} else if printTokens[2].tokenType == "MEMORY" {
+			fmt.Print(returnASCII(m))
+		} else if printTokens[2].tokenType == "NUMBER" {
+			points := printTokens[2].tokenValue
+			number, _ := strconv.Atoi(points)
+			fmt.Print(returnASCII(number))
+		}
+	} else if printTokens[1].tokenType == "SPECIAL" {
+		if printTokens[1].tokenValue == "new" {
+			fmt.Println()
+		} else if printTokens[1].tokenValue == "tab" {
+			fmt.Print("\t")
+		}
+	}
+
+	return p, m
+}
 /*
 A function which returns the ASCII Character of the given number.
 
