@@ -348,6 +348,33 @@ func doArithmetic(arithmeticTokens []token, line string, lineNumber int, p int, 
 
 	return p, m
 }
+
+
+/*
+A Function which takes care of the assignment of the memory value at run time
+
+Parameters: 
+	- assignmentTokens: []tokens containing the tokens to be used for the assignment
+	- p: int - the current pointer value
+	- m: int - the current memory value
+
+Return Values:
+	- p: int - the new pointer value
+	- m: int - the new memory value
+*/
+func assignMemory(assignmentTokens []token, p int) (int, int) {
+
+	var memory int
+	if assignmentTokens[2].tokenType == "POINTER" {
+		memory = p
+	} else {
+		number := assignmentTokens[2].tokenValue
+		memory, _ = strconv.Atoi(number)
+	}
+
+	return p, memory
+}
+
 /*
 A function which returns the ASCII Character of the given number.
 
