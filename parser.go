@@ -32,7 +32,7 @@ func parser(tokens []token, line string, lineNumber int, p int, m int) (int, int
 	if tokens[0].tokenType == "ACTION" {
 		actionTokens := checkAction(tokens, line, lineNumber)
 		if actionTokens != nil {
-			p, m = pointerMovements(actionTokens, line, lineNumber, p, m)  // Movement of the pointer
+			p, m = pointerMovements(actionTokens, line, lineNumber, p, m) // Movement of the pointer
 		}
 	} else if tokens[0].tokenType == "PRINT" {
 		printTokens := checkPrint(tokens, line, lineNumber)
