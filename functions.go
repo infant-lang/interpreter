@@ -141,10 +141,14 @@ func checkAction(tokens []token, line string, lineNumber int) []token {
 				printParseError(line, lineNumber, tokens[1].tokenValue)
 			}
 
-			if tokens[3].tokenType == "NUMBER" {
-				return tokens[:4]
+			if len(tokens) == 4 {
+				if tokens[3].tokenType == "NUMBER" {
+					return tokens[:4]
+				}
 			}
+
 			return tokens[:3]
+			
 		}
 
 		printParseError(line, lineNumber, tokens[2].tokenValue)
