@@ -276,7 +276,7 @@ func pointerMovements(actionTokens []token, line string, lineNumber int, p int, 
 			p = p + 1
 		} else if actionTokens[2].tokenValue == "left" {
 			// DO NOT ALLOW P TO BE NEGATIVE
-			if p-1 < 0 {
+			if p - 1 < 0 {
 				runtimeError(line, lineNumber, "Pointer can't point to a negative box")
 			} else {
 				p = p - 1
