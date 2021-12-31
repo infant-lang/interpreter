@@ -418,6 +418,7 @@ Return Values:
 Note: This function will recursively call the parse function which calls this function to parse the statements
 */
 func doConditionalCheck(tokens []token, conditionTokens []token, line string, lineNumber int, p int, m int) (int, int) {
+
 	var shouldWeDo bool = false
 	var firstOperand int = 0
 	var secondOperand int = 0
@@ -431,7 +432,7 @@ func doConditionalCheck(tokens []token, conditionTokens []token, line string, li
 	}
 
 	if conditionTokens[3].tokenType == "NUMBER" {
-		secondOperand, _ = strconv.Atoi(conditionTokens[1].tokenValue)
+		secondOperand, _ = strconv.Atoi(conditionTokens[3].tokenValue)
 	} else if conditionTokens[3].tokenType == "MEMORY" {
 		secondOperand = m
 	} else if conditionTokens[3].tokenType == "POINTER" {
