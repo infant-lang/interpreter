@@ -473,6 +473,48 @@ func doConditionalCheck(tokens []token, conditionTokens []token, line string, li
 	return p, m
 }
 
+
+/*
+A function that will do a loop check on the program during runtime
+	If it decides to skip the execution, the program will skip the line
+	It if decides to execute it, it will recursively try to find and execute the statements for the specified number of times
+
+Eg: It can parse following similar lines:
+	- for 5 if pointer == 1 print char pointer
+	- for pointer print memory
+
+Parameters: 
+	- tokens: []tokens containing the tokens to be used for the line execution
+	- loopTokens: []tokens containing the tokens to be used for the loop
+	- line: string - the line that is being executed
+	- lineNumber: int - the line number of the line that is being executed
+	- p: int - the current pointer value
+	- m: int - the current memory value
+
+Return Values:
+	- p: int - the new pointer value
+	- m: int - the new memory value
+*/
+func doLoops (tokens []token, loopTokens []token, line string, lineNumber int, p int, m int ) (int, int) {
+	var timesToLoop int
+
+	if loopTokens[1].tokenType == "NUMBER" {
+		timesToLoop, _ = strconv.Atoi(loopTokens[1].tokenValue)
+	} else if loopTokens[1].tokenType == "MEMORY" {
+		timesToLoop = m
+	} else if loopTokens[1].tokenType == "POINTER" {
+		timesToLoop = p
+	}
+
+	tokensToLoop := tokens[len(loopTokens):]
+	
+	for i := 0; i < timesToLoop; i++ {
+		p, m = parser(tokensToLoop, line, lineNumber, p, m)
+	}
+
+	return p, m
+}
+
 /*
 A function which returns the ASCII Character of the given number.
 
