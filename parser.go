@@ -1,5 +1,21 @@
 package main
 
+/*
+A Function which parses a line of code and returns the new position of the pointer and the new memory value
+
+	- It also executes the actions of the line of code like printing, moving the pointer, conditionals, loops, etc.
+	- The Function gets a slice of tokens from the lexer by passing the line to it. It works with the tokens to execute the actions of the line.
+
+Function Parameters:
+	- line: string - the line of code that is being parsed
+	- lineNumber: int - the line number of the line of code that is being parsed
+	- p: int - the current position of the pointer from the main function
+	- m: int - the current memory value from the main function
+
+Return Values:
+	- p: int - the new position of the pointer
+	- m: int - the new memory value
+*/
 func parse(line string, lineNumber int, p int, m int) (int, int) {
 	tokens := lex(line, lineNumber)
 	p, m = parser(tokens, line, lineNumber, p, m)
