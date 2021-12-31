@@ -215,6 +215,53 @@ func checkLoop(tokens []token, line string, lineNumber int) []token {
 	return nil
 }
 
+
+/*
+A function to move the pointer in the specified direction by the specified number of steps which defaults to 1
+
+Parameters:
+	- actionTokens: the tokens array containing the action tokens
+	- line: the line of the program execution
+	- lineNumber: the line number of the program execution
+	- p: the pointer value
+	- m: the memory value
+
+Return value:
+	- p: the new pointer value
+	- m: the new memory value
+*/
+func pointerMovements(actionTokens []token, line string, lineNumber int, p int, m int) (int, int) {
+	numberOfTokens := len(actionTokens)
+	if (numberOfTokens == 4) {
+		points := actionTokens[3].tokenValue
+		pointsToMove, _ := strconv.Atoi(points)
+
+		if actionTokens[2].tokenValue == "right" {
+			p = p + pointsToMove
+		} else if actionTokens[2].tokenValue == "left" {
+
+			// DO NOT ALLOW P TO BE NEGATIVE
+			if p - pointsToMove < 0 {
+				runtimeError(line, lineNumber, "Pointer can't point to a negative box")
+			} else {
+				p = p - pointsToMove
+			}
+		}
+	} else if (numberOfTokens == 3) {
+		if actionTokens[2].tokenValue == "right" {
+			p = p + 1
+		} else if actionTokens[2].tokenValue == "left" {
+			// DO NOT ALLOW P TO BE NEGATIVE
+			if p - 1 < 0 {
+				runtimeError(line, lineNumber, "Pointer can't point to a negative box")
+			} else {
+				p = p - 1
+			}
+		}
+	}
+
+	return p, m
+}
 /*
 A function which returns the ASCII Character of the given number.
 
