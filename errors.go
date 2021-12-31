@@ -110,3 +110,13 @@ func printFileAccessError(errorMessage string, err string) {
 	fmt.Println()
 	os.Exit(1)
 }
+
+/*
+A function which will throw an error if no command line arguments was passed
+*/
+func noArguments() {
+	fmt.Println("\n💀 No file name provided. Please provide a file name.")
+	fmt.Println("Usage: infant <filename>.infant")
+	fmt.Println("\n💀 Exiting...")
+	os.Exit(1)
+}
