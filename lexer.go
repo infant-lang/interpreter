@@ -46,7 +46,9 @@ func lex(line string, lineNumber int) []token {
 	var i int
 
 	for i = 0; i < len(line); i++ {
-		if line[i] == ' ' {
+		if line[i] == '#' {
+			break
+		} else  if line[i] == ' ' {
 			if numeral != "" {
 				tokens = append(tokens, token{"NUMBER", numeral})
 				numeral = ""
