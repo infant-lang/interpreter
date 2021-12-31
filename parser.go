@@ -37,13 +37,7 @@ func parse(line string, lineNumber int, p int, m int) (int, int) {
 	} else if tokens[0].tokenType == "CONDITION" {
 		conditionTokens := checkCondition(tokens, line, lineNumber)
 		if conditionTokens != nil {
-			
-			// var shouldWeDo bool
-			// var firstOperand int
-			// var secondOperand int
-
-
-			
+			p, m = doConditionalCheck(tokens, conditionTokens, line, lineNumber, p, m)
 		}
 
 	} else if tokens[0].tokenType == "LOOP" {
