@@ -9,6 +9,9 @@ import (
 func main () {
 	FILE_NAME := os.Args[1]
 
+	p := 0
+	m := 0
+
 	readFile, err := os.Open(FILE_NAME)
  
 	if err != nil {
@@ -26,7 +29,7 @@ func main () {
 	readFile.Close()
  
 	for lineNumber, eachline := range fileTextLines {
-		parse(eachline, lineNumber + 1)
+		p, m = parse(eachline, lineNumber + 1, p, m)
 	}
 
 
