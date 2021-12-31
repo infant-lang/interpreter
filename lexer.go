@@ -192,6 +192,7 @@ func lex(line string, lineNumber int) []token {
 			if line[i+1] == 'a' {
 				if line[i+2] == 'b' {
 					tokens = append(tokens, token{"SPECIAL", "tab"}) // tab
+					i = i + 2
 				}
 			}
 		} else if line[i] == '0' || line[i] == '1' || line[i] == '2' || line[i] == '3' ||
