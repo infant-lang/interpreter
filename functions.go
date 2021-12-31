@@ -227,3 +227,16 @@ Returns:
 func returnASCII(num int) string {
 	return string(rune(num))
 }
+
+/*
+Function which returns a boolean if the passed floating number is actually an integer
+
+Parameters: 
+	- number(float64): The number to be checked
+
+Return Value:
+	- bool: True if the number is an integer, false otherwise
+*/
+func isIntegral(val float32) bool {
+    return val == float32(int(val))
+}
