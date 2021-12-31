@@ -190,6 +190,18 @@ func lex(line string, lineNumber int) []token {
 					}
 				}
 			}
+		} else if line[i] == 's' { 
+			if line[i+1] == 'p' {
+				if line[i+2] == 'a' {
+					if line[i+3] == 'c' {
+						if line[i+4] == 'e' {
+							tokens = append(tokens, token{"SPECIAL", "space"}) // space
+							i = i + 4
+						}
+					}
+				}
+			}
+			
 		} else if line[i] == 't' {
 			if line[i+1] == 'a' {
 				if line[i+2] == 'b' {
