@@ -1,0 +1,21 @@
+# To test if the Interpreter is working correctly, feel free to use this file
+# as a playground.
+# We Print MEOW to the console.
+
+# Moving Pointer to 77
+for 77 move pointer right
+
+# Setting Memory as Pointer + 2
+memory = pointer + 2
+
+print char pointer # Will Print M
+
+# Moving pointer left 8 to Point 69
+move pointer left 8
+
+print char pointer # Will Print E
+print char memory # Will Print O
+
+# Setting Memory to 87
+memory = 87
+if memory == 87 print char memory
