@@ -155,7 +155,7 @@ The Executable is available only for amd64 Windows Systems.
 - Create a folder `bin` if not already created.
 - Extract the executable to the `bin` folder.
 - Open Command Prompt and type the following command:
-    - `setx INFANT_HOME "%USERPROFILE%\bin\infant\"`
+    - `setx INFANT_HOME "%USERPROFILE%\bin\infant"`
     - `setx PATH "%INFANT_HOME%;%PATH%"`
 - Close the Command Prompt.
 - Open a new Command Prompt and type `infant -v` or `infant --version` to check if the installation was successful.
