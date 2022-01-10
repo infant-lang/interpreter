@@ -373,6 +373,20 @@ func printStuff(printTokens []token, p int, m int) (int, int) {
 	return p, m
 }
 
+/*
+Function which takes care of the arithmetic operations and assigns the result to the memory
+
+Parameters:
+	- arithmeticTokens: []tokens containing the tokens to be worked on
+	- line: the line of the program execution
+	- lineNumber: the line number of the program execution
+	- p: int - the current pointer value
+	- m: int - the current memory value
+
+Return Values:
+	- p: int - the new pointer value
+	- m: int - the new memory value
+*/
 func doArithmetic(arithmeticTokens []token, line string, lineNumber int, p int, m int) (int, int) {
 	var firstOperand int
 	var secondOperand int
