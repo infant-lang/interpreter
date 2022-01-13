@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 )
@@ -25,8 +24,8 @@ func readFile(args int) ([]string) {
 	FILE_NAME := os.Args[1]
 
 	if FILE_NAME == "-v" || FILE_NAME == "--version" {
-		fmt.Println("v1.0.1")
-		os.Exit(0)
+		var functionMessage = "v1.0.1"
+		panic(functionMessage)
 	}
 
 	readFile, err := os.Open(FILE_NAME)
@@ -344,31 +343,36 @@ Return Values:
 	- m: int - the new memory value
 */
 func printStuff(printTokens []token, p int, m int) (int, int) {
+
+	functionMessage := ""
+
 	if printTokens[1].tokenType == "MEMORY" {
-		fmt.Print(m)
+		functionMessage += strconv.Itoa(m)
 	} else if printTokens[1].tokenType == "POINTER" {
-		fmt.Print(p)
+		functionMessage += strconv.Itoa(p)
 	} else if printTokens[1].tokenType == "NUMBER" {
-		fmt.Print(printTokens[1].tokenValue)
+		functionMessage += printTokens[1].tokenValue
 	} else if printTokens[1].tokenType == "CHAR" {
 		if printTokens[2].tokenType == "POINTER" {
-			fmt.Print(returnASCII(p))
+			functionMessage += returnASCII(p)
 		} else if printTokens[2].tokenType == "MEMORY" {
-			fmt.Print(returnASCII(m))
+			functionMessage += returnASCII(m)
 		} else if printTokens[2].tokenType == "NUMBER" {
 			points := printTokens[2].tokenValue
 			number, _ := strconv.Atoi(points)
-			fmt.Print(returnASCII(number))
+			functionMessage += returnASCII(number)
 		}
 	} else if printTokens[1].tokenType == "SPECIAL" {
 		if printTokens[1].tokenValue == "new" {
-			fmt.Println()
+			functionMessage += "\n"
 		} else if printTokens[1].tokenValue == "tab" {
-			fmt.Print("\t")
+			functionMessage += "\t"
 		} else if printTokens[1].tokenValue == "space" {
-			fmt.Print(" ")
+			functionMessage += " "
 		}
 	}
+
+	message += functionMessage
 
 	return p, m
 }
