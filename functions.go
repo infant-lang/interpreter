@@ -65,6 +65,11 @@ A function to check if the following grammars are valid
 */
 func checkArithmetic(tokens []token, line string, lineNumber int) []token {
 
+	if len(tokens) < 5 {
+		parseError(line, lineNumber)
+		panic("💀")
+	}
+
 	if tokens[0].tokenType == "MEMORY" {
 		if tokens[1].tokenType == "ASSIGNMENT" {
 			if tokens[2].tokenType == "MEMORY" {
@@ -117,6 +122,11 @@ A function to check if the following grammars are valid
 */
 func checkAssignment(tokens []token, line string, lineNumber int) []token {
 
+	if len(tokens) != 3 {
+		parseError(line, lineNumber)
+		panic("💀")
+	}
+
 	if tokens[0].tokenType == "MEMORY" {
 		if tokens[1].tokenType == "ASSIGNMENT" {
 			if tokens[2].tokenType == "POINTER" {
@@ -144,6 +154,11 @@ A function to check if the following grammars are valid
 */
 func checkPrint(tokens []token, line string, lineNumber int) []token {
 
+	if len(tokens) < 2 {
+		parseError(line, lineNumber)
+		panic("💀")
+	}
+
 	if tokens[0].tokenType == "PRINT" {
 		if tokens[1].tokenType == "MEMORY" {
 			return tokens[:2]
@@ -152,6 +167,12 @@ func checkPrint(tokens []token, line string, lineNumber int) []token {
 		}
 
 		if tokens[1].tokenType == "CHAR" {
+
+			if len(tokens) != 3 {
+				parseError(line, lineNumber)
+				panic("💀")
+			}
+
 			if tokens[2].tokenType == "POINTER" {
 				return tokens[:3]
 			} else if tokens[2].tokenType == "MEMORY" {
@@ -182,6 +203,11 @@ A function to check if the following grammars are valid
 	- Grammar 2: ACTION POINTER DIRECTION NUMBER
 */
 func checkAction(tokens []token, line string, lineNumber int) []token {
+
+	if len(tokens) < 3 {
+		parseError(line, lineNumber)
+		panic("💀")
+	}
 
 	if tokens[0].tokenType == "ACTION" {
 		if tokens[2].tokenType == "DIRECTION" {
