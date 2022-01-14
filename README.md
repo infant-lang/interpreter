@@ -1,5 +1,18 @@
 # Infant Lang Interpreter
 
+## Change Log
+
+- ### `1.0.2` (2022-01-14)
+  - Utility function will save it to global message variables.
+  - Utility function can no longer print to the `stdout`.
+  - Added support for the `sandbox` API
+  - Lexer now supports `#` comments
+  - Optimized handling of Tokenization Error by the Lexer
+
+- ### `1.0.1` - (2021-12-31)
+  - Initial release
+  - Interpreter uses `stdin` for getting the `file` to interpret
+  - Individual functions can print to the `stdout`
 
 # Infant Lang
 Minimalistic Less Esoteric Programming Language for Infants
