@@ -24,7 +24,7 @@ func readFile(args int) ([]string) {
 	FILE_NAME := os.Args[1]
 
 	if FILE_NAME == "-v" || FILE_NAME == "--version" {
-		message = "v1.0.2"
+		message = "v1.0.3"
 		panic(message)
 	}
 

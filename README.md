@@ -2,6 +2,12 @@
 
 ## Change Log
 
+- ### `1.0.3` (2022-01-15)
+    - Added new function which checks for parsing error
+    - Now prints error message if parsing error occurs which was not available before thereby making debugging difficult
+    - Optimized error handling of Grammar matching
+    - Feature request of `Sandbox` API
+
 - ### `1.0.2` (2022-01-14)
   - Utility function will save it to global message variables.
   - Utility function can no longer print to the `stdout`.
