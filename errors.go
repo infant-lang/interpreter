@@ -62,7 +62,7 @@ Parameters:
 
 	Prints: The error to the console.
 */
-func printError(line string, lineNumber int, i int) {
+func lexError(line string, lineNumber int, i int) {
 	functionMessage := ""
 	functionMessage += "\n"
 	functionMessage += "💀 Tokenization Error\n"
