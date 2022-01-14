@@ -129,3 +129,20 @@ func noArguments() {
 	panicMessage += functionMessage
 	panic("💀 ERROR 💀")
 }
+
+/*
+A function which will throw an error if the parser cannot build a grammar with the tokens
+
+Parameters:
+	- line: string - The line which contains the error.
+	- lineNumber: int - The line number of the error.
+*/
+func parseError(line string, lineNumber int) {
+	functionMessage := ""
+	functionMessage += "\n💀 Parse Error\n"
+	functionMessage += `Malformed Statement at line number ` + strconv.Itoa(lineNumber) + "\n"
+	functionMessage += "👉 " + line + "\n"
+	functionMessage += "\n"
+	panicMessage += functionMessage
+	panic("💀 ERROR 💀")
+}
